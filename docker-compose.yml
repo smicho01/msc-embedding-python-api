@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  embedding-api:
+    container_name: "sm-embedding-api"
+    build: .
+    ports:
+      - "9050:9050"
+    environment:
+      - HF_TOKEN=${HF_TOKEN}
+      - API_TOKEN=${API_TOKEN}
+      - MONGO_CONN_STRING=${MONDO_CONN_STRING}

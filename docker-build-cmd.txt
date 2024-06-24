@@ -1,0 +1,3 @@
+docker buildx build --platform linux/amd64,linux/arm64 -t sever3d/hugginface-embedding-api --push .
+
+zapuść docker image: moby/buildkit:buildx-stable-1

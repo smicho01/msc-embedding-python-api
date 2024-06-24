@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "a78831ee-6891-4b84-bf37-3bc011fbd9c3",
+		"name": "Embedding FLASK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11729080",
+		"_collection_link": "https://speeding-water-207383.postman.co/workspace/SpringBoot-%26-Fiddle~4ce5d8d5-6ab1-41fd-a92d-77a69e0846ce/collection/11729080-a78831ee-6891-4b84-bf37-3bc011fbd9c3?action=share&source=collection_link&creator=11729080"
+	},
+	"item": [
+		{
+			"name": "Create Embedding",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-tokens",
+						"value": "{{embedding_api_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"How to build B++ Tree indexes in Postgres DB\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{embedding_api_url}}/embedding",
+					"host": [
+						"{{embedding_api_url}}"
+					],
+					"path": [
+						"embedding"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Embedding Mongo Store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-tokens",
+						"value": "{{embedding_api_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"question\": \"How to build B++ Tree indexes in Postgres DB\",\n    \"questionId\": \"abc-123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{embedding_api_url}}/embedding/mongostore",
+					"host": [
+						"{{embedding_api_url}}"
+					],
+					"path": [
+						"embedding",
+						"mongostore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search question by embedding",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-tokens",
+						"value": "{{embedding_api_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"question\": \"OpenSearch\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{embedding_api_url}}/embedding/search",
+					"host": [
+						"{{embedding_api_url}}"
+					],
+					"path": [
+						"embedding",
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

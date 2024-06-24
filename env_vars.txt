@@ -1,0 +1,2 @@
+HF_TOKEN= huggingface token
+API_TOKEN= api request  security token; header `x-access-tokens`
