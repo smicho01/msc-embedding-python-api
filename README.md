@@ -78,3 +78,4 @@ to Your Profile -> Settings -> Access Tokens -> New Token
 Create Database. Click Connect and copy connection string. 
 3. For API_TOKEN - create any password you want, but use the same in you
 API request headers as mentioned above.
+4. Run command `docker compose up -d` (you must have Docker and Compose in your system)
