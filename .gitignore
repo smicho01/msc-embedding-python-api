@@ -8,7 +8,7 @@
 /dataSources.local.xml
 .idea
 ./idea
-
+.env
 .idea/
 
 __pycache__
