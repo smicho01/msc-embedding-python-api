@@ -8,7 +8,12 @@
 /dataSources.local.xml
 .idea
 ./idea
+venv/
+.env/
+
+# Ignore environment variables files
 .env
+
 .idea/
 
 __pycache__
@@ -36,8 +41,6 @@ target/
 *.iws
 *.iml
 *.ipr
-
-.env
 
 ### NetBeans ###
 /nbproject/private/

@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 from functools import wraps
-from utils import generate_embedding  # Import the function from utils.py
 import os
-from mongo_utils import *
+
+import apputils as au
 
 app = Flask(__name__)
 
@@ -35,7 +35,7 @@ def convert_object_id(document):
 @token_required
 def create_embedding():
     data = request.json
-    embedding = generate_embedding(data['text'])
+    embedding = au.generate_embedding(data['text'])
     return jsonify(embedding), 201
 
 
@@ -51,13 +51,13 @@ def create_embedding_mongo_store():
     data = request.json
     questionId = data['questionId']
     question = data['question']
-    question_embedding = generate_embedding(question)  # create the embeddings
+    question_embedding = au.generate_embedding(question)  # create the embeddings
     record = {
         'questionId': questionId,
         'question': question,
         'question_embedding': question_embedding
     }
-    insertId = mongo_insert_record(record)
+    insertId = au.mongo_insert_record(record)
     return jsonify({'mongoId': str(insertId), 'questionId': questionId, 'question': question,
                     'question_embedding': question_embedding}), 201
 
@@ -73,8 +73,8 @@ def search_embedding_mongo_store():
     """
     data = request.json
     question = data['question']
-    question_embedding = generate_embedding(question)
-    results = mongo_search_similar_questions(question_embedding)
+    question_embedding = au.generate_embedding(question)
+    results = au.mongo_search_similar_questions(question_embedding)
     data = [convert_object_id(doc) for doc in results]
 
     return jsonify(data), 200

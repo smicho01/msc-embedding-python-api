@@ -2,7 +2,7 @@ import pymongo
 import os
 
 mongo_connection_string = os.getenv('MONGO_CONN_STRING', 'mongodb://localhost:27017/')
-search_limits_count = os.getenv('SEARCH_LIMITS_COUNT', 5)
+search_limits_count = int(os.getenv('SEARCH_LIMITS_COUNT', 5))
 
 client = pymongo.MongoClient(mongo_connection_string)
 db = client.mscstudents
