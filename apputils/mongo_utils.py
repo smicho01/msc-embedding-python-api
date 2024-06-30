@@ -14,13 +14,13 @@ def mongo_insert_record(record):
     return result.inserted_id
 
 
-def mongo_search_similar_questions(queryEmbedding):
+def mongo_search_similar_questions(queryEmbedding, limit=search_limits_count):
     results = collection.aggregate([
         {"$vectorSearch": {
             "queryVector": queryEmbedding,
             "path": "question_embedding",
             "numCandidates": 100,
-            "limit": search_limits_count,
+            "limit": limit,
             "index": "QuestionSematicSearchIndex",
         }}
     ])
