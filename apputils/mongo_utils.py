@@ -2,7 +2,7 @@ import pymongo
 import os
 
 mongo_connection_string = os.getenv('MONGO_CONN_STRING', 'mongodb://localhost:27017/')
-search_limits_count = os.getenv('SEARCH_LIMITS_COUNT', 5)
+search_limits_count = int(os.getenv('SEARCH_LIMITS_COUNT', 5))
 
 client = pymongo.MongoClient(mongo_connection_string)
 db = client.mscstudents
@@ -14,13 +14,13 @@ def mongo_insert_record(record):
     return result.inserted_id
 
 
-def mongo_search_similar_questions(queryEmbedding):
+def mongo_search_similar_questions(queryEmbedding, limit=search_limits_count):
     results = collection.aggregate([
         {"$vectorSearch": {
             "queryVector": queryEmbedding,
             "path": "question_embedding",
             "numCandidates": 100,
-            "limit": search_limits_count,
+            "limit": limit,
             "index": "QuestionSematicSearchIndex",
         }}
     ])
