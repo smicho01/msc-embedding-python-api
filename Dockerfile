@@ -8,7 +8,8 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir flask requests python-dotenv pymongo
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir flask requests python-dotenv pymongo torch transformers
 
 # Make port 9050 available to the world outside this container
 EXPOSE 9050

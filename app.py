@@ -72,7 +72,7 @@ def create_embedding_mongo_store():
                     'question_embedding': question_embedding}), 201
 
 
-@app.route('/embedding/search', methods=['GET'])
+@app.route('/embedding/search', methods=['POST'])
 @token_required
 def search_embedding_mongo_store():
     app.logger.info('Called /embedding/search')
