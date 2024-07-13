@@ -121,5 +121,30 @@ def check_text_toxicity():
     return jsonify({'score': toxicity_score}), 201
 
 
+@app.route('/validate/question', methods=['POST'])
+@token_required
+def validate_question():
+    app.logger.info('Called /validate/question')
+    print('Called /validate/question')
+    data = request.json
+    title = data['title']
+    body = data['body']
+
+    is_valid_english_title = au.check_text(title)
+    is_valid_english_body = au.check_text(body)
+
+    toxicity_score_title = au.get_text_toxicity_score(title)
+    toxicity_score_body = au.get_text_toxicity_score(body)
+
+    return jsonify(
+        {
+            'valid_english_title': is_valid_english_title,
+            'valid_english_body': is_valid_english_body,
+            'toxicity_score_title': toxicity_score_title,
+            'toxicity_score_body': toxicity_score_body
+        }
+    ), 200
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9050, debug=True)
