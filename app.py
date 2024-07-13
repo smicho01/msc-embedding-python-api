@@ -1,3 +1,8 @@
+# Install:
+# pip3 install tensorflow
+# pip3 install python-dotenv
+# pip3 install torch torchvision
+
 from flask import Flask, request, jsonify
 from functools import wraps
 import os
