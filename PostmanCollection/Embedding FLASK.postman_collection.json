@@ -74,11 +74,8 @@
 		},
 		{
 			"name": "Search question by embedding",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "x-access-tokens",
@@ -96,13 +93,51 @@
 					}
 				},
 				"url": {
-					"raw": "{{embedding_api_url}}/embedding/search",
+					"raw": "{{embedding_api_url}}/embedding/search?limit=8",
 					"host": [
 						"{{embedding_api_url}}"
 					],
 					"path": [
 						"embedding",
 						"search"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate text",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-tokens",
+						"value": "{{embedding_api_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"How to build B++ Tree indexes in Postgres DB\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{embedding_api_url}}/validatetext",
+					"host": [
+						"{{embedding_api_url}}"
+					],
+					"path": [
+						"validatetext"
 					]
 				}
 			},
