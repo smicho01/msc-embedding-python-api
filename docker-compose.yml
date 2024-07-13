@@ -11,8 +11,8 @@ services:
 #      - API_TOKEN=${API_TOKEN}
 #      - MONGO_CONN_STRING=${MONDO_CONN_STRING}
 
-  happy-api:
-    container_name: happy-api
+  nlp-api:
+    container_name: nlp-api
     image: sever3d/hugginface-embedding-api
     ports:
       - "9051:9050"
