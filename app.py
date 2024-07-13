@@ -2,15 +2,18 @@
 # pip3 install tensorflow
 # pip3 install python-dotenv
 # pip3 install torch torchvision
+# pip3 install flask-cors
 
 from flask import Flask, request, jsonify
 from functools import wraps
 import os
 import logging
 import apputils as au
+from flask_cors import CORS
 
 # Create app
 app = Flask(__name__)
+CORS(app)
 
 # Create a StreamHandler for logging
 stream_handler = logging.StreamHandler()
