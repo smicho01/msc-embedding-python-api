@@ -1,3 +1,4 @@
 HF_TOKEN= huggingface token
 API_TOKEN= api request  security token; header `x-access-tokens`
 MONGO_CONN_STRING= mongo connection string
+MONGO_COLLECTION=questions.test or questions
