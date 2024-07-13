@@ -21,12 +21,13 @@ def generate_embedding(text):
     return response.json()
 
 
-## Check if text is valid English
+# --------- Check if text is valid English
 # Load the language identification pipeline
 lang_identifier = pipeline('text-classification', model='papluca/xlm-roberta-base-language-detection')
-
 # Load the spam detection pipeline
 spam_detector = pipeline('text-classification', model='unitary/toxic-bert')
+# Load pre-trained model and tokenizer to check for 'bad' words in text
+appropriate_lang_classifier = pipeline("text-classification", model="unitary/toxic-bert")
 
 
 def is_english(text):
@@ -47,3 +48,23 @@ def check_text(text):
             return False
     else:
         return False
+
+
+def check_inappropriate_content(text):
+    """
+    Check the given text for inappropriate content.
+    """
+    result = appropriate_lang_classifier(text)
+    return result
+
+
+def get_text_toxicity_score(text):
+    """
+    Get the toxicity score of a given text.
+    Parameters:
+    - text (str): The text to analyze for toxicity.
+    Returns:
+    - float: The toxicity score of the text.
+    """
+    toxicity = check_inappropriate_content(text)
+    return toxicity[0]['score']

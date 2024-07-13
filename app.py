@@ -19,7 +19,6 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 stream_handler.setFormatter(formatter)
 app.logger.addHandler(stream_handler)
 
-
 # Set a simple auth token (in a real app, store securely)
 API_TOKEN = os.getenv('API_TOKEN', 'my_secure_api_token')
 
@@ -41,7 +40,7 @@ def convert_object_id(document):
     return {'questionId': document['questionId'], 'question': document['question']}
 
 
-#-------------------------------------- API -------------------------------------#
+# -------------------------------------- API ------------------------------------- #
 @app.route('/embedding', methods=['POST'])
 @token_required
 def create_embedding():
@@ -107,6 +106,16 @@ def check_if_text_is_english():
     text = data['text']
     isValid = au.check_text(text)
     return jsonify({'valid': isValid}), 200
+
+
+@app.route('/toxicity', methods=['POST'])
+@token_required
+def check_text_toxicity():
+    app.logger.info('Called /toxicity')
+    print('Called /toxicity')
+    data = request.json
+    toxicity_score = au.get_text_toxicity_score(data['text'])
+    return jsonify({'score': toxicity_score}), 201
 
 
 if __name__ == '__main__':
