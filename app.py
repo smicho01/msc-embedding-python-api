@@ -44,6 +44,18 @@ def convert_object_id(document):
 
 
 # -------------------------------------- API ------------------------------------- #
+@app.route('/healthcheck', methods=['GET'])
+def healthcheck():
+    app.logger.info('Called /healthcheck')
+    print('Called /healthcheck')
+    mongoCollectionName = os.environ.get('MONGO_COLLECTION', "can't get cool name form env variable")
+    response = {
+        "status": "HEALTHY",
+        "mongoCollection": mongoCollectionName
+    }
+    return jsonify(response), 200
+
+
 @app.route('/embedding', methods=['POST'])
 @token_required
 def create_embedding():

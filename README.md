@@ -2,6 +2,10 @@
 
 With Python, HuggingFace and MongoDB Atlas.
 
+## Running app manually
+
+` flask run --host=0.0.0.0 --port=9050`
+
 ## What is going on ?
 
 **Requirements, dreams & desires**: I am at the stage of building my MSC Advanced Computing
