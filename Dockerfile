@@ -28,4 +28,4 @@ EXPOSE 9050
 ENV FLASK_APP=app.py
 
 # Run app.py when the container launches
-CMD ["flask", "run", "--host=0.0.0.0", "--port=
+CMD ["flask", "run", "--host=0.0.0.0", "--port=9050"]
