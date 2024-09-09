@@ -31,6 +31,8 @@ appropriate_lang_classifier = pipeline("text-classification", model="unitary/tox
 
 
 def is_english(text):
+    if text is None:
+        return False
     result = lang_identifier(text)
     return result[0]['label'] == 'en'
 
